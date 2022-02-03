@@ -90,17 +90,12 @@ int deletes( LLPtr *sPtr, int value)
    // delete first node
    if ( value == ( *sPtr )->id ) { 
       tempPtr = *sPtr; // next 1 2 3 - pPtr 3 2 1 hold onto node being removed
-      //(*sPtr)->id = NULL;
       /*sPtr next = 1 2 3
       sPtr pPtr = 3 2 1*/
-
       *sPtr = ( *sPtr )->nextPtr; // de-thread the node
-      //( *sPtr )->pPtr = tempPtr;
-
       /*sPtr next = 2 3
       sPtr pPtr = 2 1
       */
-      
       free( tempPtr ); // free the de-threaded node
       return value;
    } // end if
@@ -125,7 +120,7 @@ int deletes( LLPtr *sPtr, int value)
       } // end if
    } // end else
 
-   return '\0';
+   return value-1;
 } // end function delete
 
 // return 1 if the list is empty, 0 otherwise
@@ -142,21 +137,21 @@ void printList( LLPtr currentPtr )
       puts( "List is empty.\n" );
    } // end if
    else { 
-      puts( "The list is:" );
+      puts( "-----------------------------\nThe list is:" );
 
       // while not the end of the list
       while ( currentPtr != NULL ) { 
-         printf( "ID = %-7d Score = %d\n", currentPtr->id,currentPtr->score );
+         printf( "ID: %-7d Score: %d\n", currentPtr->id,currentPtr->score );
          currentPtr = currentPtr->nextPtr;   
       } // end while
 
-      puts( "NULL\n" );
+      puts( "NULL\n-----------------------------\nThe reverse is:");
    } // end else
 } // end function printList
 
 void reverseLLPrint( LLPtr currentPtr ) {
     if (currentPtr != NULL) {
         reverseLLPrint(currentPtr->nextPtr);
-        printf("ID = %-7d Score = %d\n", currentPtr->id,currentPtr->score);
+        printf("ID: %-7d Score: %d\n", currentPtr->id,currentPtr->score);
     }
 }
